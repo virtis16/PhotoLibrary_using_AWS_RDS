@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view</title>
+ <script>
+    var $ = function (id) {
+    return document.getElementById(id);
+}
+var i=1;
+var increment = function () {
+    $("like").value = "Likes: " + i;
+    i++;
+}
+window.onload = function () {
+    $("like").onclick = increment;
+}
+</script>
+
+</head>
+</head>
+<body style="background-color:cyan">
+<form action = "/logout" method = "POST" enctype="multipart/form-data">
+    <input style = "float:right" type = "submit" name="upload" value="Log out"/>
+</form>
+<hr>
+{% for item in data %}
+<img src=" {{ item[1] }}"/>
+<p><strong>Title of the image:</strong>{{item[2]}}</p>
+<p><strong>Last updated:</strong>{{item[5]}}</p>              <p hidden>like = {{item[2]}}</p>
+<input type="button" value="Number of Likes" id="like" name = "like" /> <p hidden>star = {{item[2]}}</p>
+<p><strong>Please Give your rating:</strong>{{item[4]}}</p>
+
+<form action = "/ratings" method = "POST">
+  <input type="radio" name="star" value="1"> 1
+  <input type="radio" name="star" value="2"> 2
+  <input type="radio" name="star" value="3"> 3
+     <input type="radio" name="star" value="4"> 4
+     <input type="radio" name="star" value="5"> 5
+    <input type="submit" name="submit" value="update">
+</form>
+
+
+    {% endfor %}
+
+</form>
+
+</body>
+</html>
